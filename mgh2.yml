@@ -1,0 +1,11 @@
+---
+- name: ssh_connection
+  hosts: R3
+  ansible_connection: ansible.netcommon.network_cli
+  ansible_user: cisco
+  ansible_password: cisco
+  ansible_port: 22 
+  
+  tasks:
+  - name: thing to do first in this playbook
+...

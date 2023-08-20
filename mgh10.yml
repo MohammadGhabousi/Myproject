@@ -1,0 +1,44 @@
+---
+- name: Configure OSPF
+  hosts: R1
+  gather_facts: no  # We don't need to gather facts for network devices
+
+  vars:
+    ospf_process_id: 1
+    ospf_area: 0.0.0.0
+
+  tasks:
+    - name: Configure OSPF on routers
+      ios_command:
+        commands:
+          - "router ospf {{ ospf_process_id }}"
+          - "network 192.168.1.0 0.0.0.255 area {{ ospf_area }}"
+          - "network 10.0.0.0 0.255.255.255 area {{ ospf_area }}"
+          - "network 172.16.0.0 0.15.255.255 area {{ ospf_area }}"
+        provider: "{{ cli }}"
+      register: ospf_result
+
+  vars_prompt:
+    - name: "ansible_ssh_password"
+      prompt: "Enter SSH password for network devices"
+      private: yes
+
+  tasks:
+    - name: Set SSH password for network devices
+      set_fact:
+        cli:
+          host: "{{ inventory_hostname }}"
+          username: "cisco"
+          password: "{{ ansible_ssh_password }}"
+          authorize: yes
+          auth_pass: "{{ ansible_ssh_password }}"
+          transport: cli
+
+  handlers:
+    - name: Save configuration changes
+      ios_command:
+        commands: "write memory"
+        provider: "{{ cli }}"
+      when: ospf_result.stdout_lines | join('') | search('Area added to router') is succeeded
+
+

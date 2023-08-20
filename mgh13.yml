@@ -1,0 +1,18 @@
+---
+- name: Configure Router Interface
+  hosts: Router
+  gather_facts: no  # We don't need facts gathering for this task
+  become: true
+  tasks:
+    - name: Configure Interface
+      ios_config:
+        lines:
+          - "router ospf 1"
+          - "network 192.168.1.0 0.0.0.255 area 0"
+        
+      register: config_result
+      timeout: 60
+
+    - name: Display Configuration Result
+      debug:
+        var: config_result

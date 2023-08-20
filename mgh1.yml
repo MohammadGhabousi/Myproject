@@ -1,0 +1,11 @@
+---
+- all: 
+   vars:
+    ansible_user: cisco
+    ansible_password: cisco
+    ansible_port: 22
+   hosts:
+    Router:
+      hosts:
+        R3:
+          ansible_host: 10.10.20.173

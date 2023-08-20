@@ -1,0 +1,14 @@
+---
+- name: My Playbook
+  hosts: R1
+  tasks:
+    - name: Show Interfaces
+      ios_command:
+        commands:
+          - show interfaces
+      register: show_interfaces
+
+    - name: Display Output
+      debug:
+        var: show_interfaces.stdout_lines
+

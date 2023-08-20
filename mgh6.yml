@@ -1,0 +1,21 @@
+---
+- name: Configure Router Interface
+  hosts: R1
+  gather_facts: no
+  tasks:
+    - name: Configure Interface
+      ios_config:
+        lines:
+          - interface GigabitEthernet0/2
+          - ip address 192.168.1.2 255.255.255.0
+          - description My New Interface
+          - no shutdown
+      register: config_result
+      become: true
+      become_method: enable
+        # Replace with your actual enable password
+
+    - name: Display Configuration Result
+      debug:
+        var: config_result
+

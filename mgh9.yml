@@ -1,0 +1,17 @@
+---
+- name: Configure Interface
+   ios_config:
+    lines:
+      - interface GigabitEthernet2
+      - ip address 192.168.1.1 255.255.255.0
+      - description My New Interface
+      - no shutdown
+  register: config_result
+  vars:
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_become_pass: cisco
+    ansible_ssh_extra_args: -o "SendEnv ANSIBLE_NETMIKO_AUTH_PASS"
+    ansible_netmiko_auth_pass: cisco
+    ansible_netmiko_send_command: "enable\r\n"
+
