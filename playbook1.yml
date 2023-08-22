@@ -13,24 +13,24 @@
     - name: Generate R2 configuration
       template:
         src: R2.j2
-        dest: /mnt/d/BCU/Automation/Assignment/{{ inventory_hostname }}-config.txt
+        dest: D:\BCU\Automation\Assignment\My Ansible files\project\{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R2'
 
     - name: Generate R3 configuration
       template:
         src: R3.j2
-        dest: /home/mgh/DevNet_Project/Output/{{ inventory_hostname }}-config.txt
+        dest: D:\BCU\Automation\Assignment\My Ansible files\project\{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R3'
 
     - name: Generate R4 configuration
       template:
         src: R4.j2
-        dest: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
+        dest: D:\BCU\Automation\Assignment\My Ansible files\project\{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R4'
 
     - name: Apply generated configuration using ios_config
       ios_config:
-        src: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
+        src: D:\BCU\Automation\Assignment\My Ansible files\project\{{ inventory_hostname }}-config.txt
       register: result
 
     - name: Save Config
