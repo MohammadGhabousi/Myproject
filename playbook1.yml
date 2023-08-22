@@ -7,13 +7,13 @@
     - name: Generate R1 configuration
       template:
         src: R1.j2
-        dest: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
+        dest: D:\BCU\Automation\Assignment\My Ansible files\project\{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R1'
 
     - name: Generate R2 configuration
       template:
         src: R2.j2
-        dest: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
+        dest: /mnt/d/BCU/Automation/Assignment/{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R2'
 
     - name: Generate R3 configuration
