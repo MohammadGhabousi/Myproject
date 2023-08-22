@@ -7,13 +7,13 @@
     - name: Generate R1 configuration
       template:
         src: R1.j2
-        dest: /home/mgh/DevNet_Project/Output/{{ inventory_hostname }}-config.txt
+        dest: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R1'
 
     - name: Generate R2 configuration
       template:
         src: R2.j2
-        dest: /home/mgh/DevNet_Project/Output/{{ inventory_hostname }}-config.txt
+        dest: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R2'
 
     - name: Generate R3 configuration
@@ -25,12 +25,12 @@
     - name: Generate R4 configuration
       template:
         src: R4.j2
-        dest: /home/mgh/DevNet_Project/Output/{{ inventory_hostname }}-config.txt
+        dest: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
       when: inventory_hostname == 'R4'
 
     - name: Apply generated configuration using ios_config
       ios_config:
-        src: /home/mgh/DevNet_Project/Output/{{ inventory_hostname }}-config.txt
+        src: https://github.com/MohammadGhabousi/Myproject/edit/master/{{ inventory_hostname }}-config.txt
       register: result
 
     - name: Save Config
