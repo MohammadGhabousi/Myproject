@@ -1,0 +1,14 @@
+interface Loopback0
+  ip address 192.168.6.1 255.255.255.0
+interface Loopback1
+  ip address 192.168.1.1 255.255.255.0
+
+interface GigabitEthernet0/1
+  ip address 192.168.2.1 255.255.255.0
+  no shut
+
+router eigrp 200
+    network 192.168.6.0
+    network 192.168.1.0
+    network 192.168.2.0
+  

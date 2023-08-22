@@ -1,0 +1,15 @@
+{% for loopback in loopback_interfaces %}
+interface Loopback{{ loopback.number }}
+  ip address {{ loopback.ip }} 255.255.255.0
+{% endfor %}
+
+{% for interface in interfaces %}
+interface {{ interface.name }}
+  ip address {{ interface.ip }} {{ interface.mask }}
+  no shut
+{% endfor %}
+
+router eigrp 200
+  {% for eigrp_network in eigrp_networks %}
+  network {{ eigrp_network }}
+  {% endfor %}

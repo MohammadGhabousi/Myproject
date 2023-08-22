@@ -1,0 +1,23 @@
+interface Loopback0
+  ip address 192.168.5.1 255.255.255.0
+
+interface GigabitEthernet0/1
+  ip address 192.168.77.2 255.255.255.0
+  no shut
+  interface GigabitEthernet0/2
+  ip address 192.168.4.2 255.255.255.0
+  no shut
+    ip ospf 100 area 0
+  
+router ospf 100
+  router-id 1.1.1.1
+    network 192.168.4.0 0.0.0.255 area 0
+    network 192.168.5.0 0.0.0.255 area 0
+    network 192.168.0.0 0.0.255.255 area 0
+  
+router bgp 65000
+  bgp router-id 3.3.3.3
+  neighbor 192.168.77.1 remote-as 65100
+    network 192.168.5.0
+    network 192.168.4.0
+  

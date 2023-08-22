@@ -1,0 +1,32 @@
+---
+
+#R3 vars.yml
+
+loopback_interfaces:
+  - number: 0
+    ip: 192.168.5.1
+
+interfaces:
+  - name: GigabitEthernet0/1
+    ip: 192.168.77.2
+    mask: 255.255.255.0
+  - name: GigabitEthernet0/2
+    ip: 192.168.4.2
+    mask: 255.255.255.0
+    ospf_area: 0
+
+ospf_router_id: 1.1.1.1
+
+ospf_networks:
+  - 192.168.4.0 0.0.0.255
+  - 192.168.5.0 0.0.0.255
+  - 192.168.0.0 0.0.255.255
+
+bgp_router_id: 3.3.3.3
+bgp_neighbor_ip: 192.168.77.1
+bgp_networks:
+  - 192.168.5.0
+  - 192.168.4.0 
+  
+
+

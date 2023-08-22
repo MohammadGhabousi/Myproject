@@ -1,0 +1,21 @@
+---
+
+#R1 vars.yml
+
+loopback_interfaces:
+  - number: 0
+    ip: 192.168.6.1
+  - number: 1
+    ip: 192.168.1.1
+
+interfaces:
+  - name: GigabitEthernet0/1
+    ip: 192.168.2.1
+    mask: 255.255.255.0
+
+eigrp_networks:
+  - 192.168.6.0
+  - 192.168.1.0
+  - 192.168.2.0
+
+
